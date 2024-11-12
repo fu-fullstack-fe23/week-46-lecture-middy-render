@@ -1,0 +1,30 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: fe23devs
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: middyMovieApi
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: eu-north-1
+  deploymentMethod: direct
+
+functions:
+  GetKey:
+    handler: functions/GetKey/index.handler
+    events:
+      - httpApi:
+          path: /keys
+          method: get
+  GetMovies:
+    handler: functions/GetMovies/index.handler
+    events:
+      - httpApi:
+          path: /movies
+          method: get
+  PostMovie:
+    handler: functions/PostMovie/index.handler
+    events:
+      - httpApi:
+          path: /movies
+          method: post
